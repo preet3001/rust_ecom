@@ -1,3 +1,15 @@
-fn main() {
-    println!("Hello, world!");
+use core::str;
+
+#[macro_use]
+extern crate rocket;
+
+#[get("/")]
+fn index() -> &'static str {
+    "hello world"
 }
+
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/", routes![index])
+}
+
